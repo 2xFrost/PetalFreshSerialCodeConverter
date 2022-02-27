@@ -1,0 +1,83 @@
+﻿<Window x:Class="PetalFreshKonweter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PetalFreshKonweter"
+        mc:Ignorable="d"
+        Title="KalkulatorSerii"
+        MinHeight="400" 
+        MinWidth="600"
+        Background="DarkGray"
+        ResizeMode="CanResizeWithGrip"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen">
+    
+    <Window.Resources>
+        
+        <ResourceDictionary>
+            
+            <Style x:Key="CalculateValueButtonTheme" TargetType="Button">
+                <Setter Property="Background" Value="DarkOrange" />
+                <Setter Property="Grid.Column" Value="1"/>
+                <Setter Property="Grid.Row" Value="1"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Width" Value="120"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            
+            <Style x:Key='TextBlockTheme' TargetType="TextBlock">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Grid.ColumnSpan" Value="3"/>
+            </Style>
+            <Style x:Key="OutputTextBlockTheme" TargetType="TextBlock" BasedOn="{StaticResource TextBlockTheme}">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+            <Style x:Key="InstructionTextBlock" TargetType="TextBlock" BasedOn="{StaticResource TextBlockTheme}">
+                <Setter Property="Grid.Row" Value="0"/>
+                <Setter Property="Height" Value="60"/>
+                <Setter Property="FontSize" Value="30"/>
+            </Style>
+            
+            <Style x:Key="UserInputTheme" TargetType="TextBox">
+                <Setter Property="Grid.Row" Value="1"/>
+                <Setter Property="Grid.Column" Value="1"/>
+                <Setter Property="MaxLength" Value="10"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Width" Value="120"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+        
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="Instruction" Text="Podaj Serię Produktu" Style="{StaticResource InstructionTextBlock}"/>
+        <TextBox x:Name="UserInput" Style="{StaticResource UserInputTheme}" KeyDown="CalculateValues_KeyDown"/>
+        <Button x:Name="CalculateValues" Style="{StaticResource CalculateValueButtonTheme}" Content="Konwertuj" Click="Button_Click"/>
+
+        <StackPanel Margin="0,0,0,5" Grid.Column="1" Grid.Row="2">
+            <Label Content="Data Produkcji: "/>
+            <TextBlock x:Name="ManufactureDateOutput" Style="{StaticResource OutputTextBlockTheme }" Text=""/>
+            <Label Content="Seria Produktu: "/>
+            <TextBlock x:Name="SerialCodeOutput" Style="{StaticResource OutputTextBlockTheme }" Text=""/>
+            <Label Content="Data Przydatności: "/>
+            <TextBlock x:Name="ShelfLIfeOutput" Style="{StaticResource OutputTextBlockTheme }" Text=""/>
+        </StackPanel>
+    </Grid>
+</Window>
